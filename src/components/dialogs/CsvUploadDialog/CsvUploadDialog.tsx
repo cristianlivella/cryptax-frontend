@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -24,6 +24,14 @@ const CsvUploadDialog = (props: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [exception, setException] = useState<any>(null);
 
+    useEffect(() => {
+        if (!open) {
+            setIsLoading(false);
+            setFile(null);
+            setException(null);
+        }
+    }, [open]);
+
     const onFileChange = useCallback((e) => {
         const selectedFile = e.target.files[0];
         setFile(selectedFile ?? null);
@@ -42,12 +50,36 @@ const CsvUploadDialog = (props: Props) => {
             credentials: 'include'
         }).then(res => res.json()).then(json => {
             if (json.exception) {
-                setException(json);
+                try {
+                    // @ts-ignore
+                    ga('send', 'event', {
+                        'eventCategory': 'report',
+                        'eventAction': 'upload_file_fail'
+                    });
+                } finally {
+                    setException(json);
+                }
             } else if (json.report_id) {
-                onSuccess(json);
+                try {
+                    // @ts-ignore
+                    ga('send', 'event', {
+                        'eventCategory': 'report',
+                        'eventAction': 'upload_file'
+                    });
+                } finally {
+                    onSuccess(json);
+                }
             } else {
-                setException({exception: 'generic_error'});
-                setFile(null);
+                try {
+                    // @ts-ignore
+                    ga('send', 'event', {
+                        'eventCategory': 'report',
+                        'eventAction': 'upload_file_network_fail'
+                    });
+                } finally {
+                    setException({exception: 'generic_error'});
+                    setFile(null);
+                }
             }
         }).catch(() => {
             setException({exception: 'network_error'});
@@ -64,7 +96,7 @@ const CsvUploadDialog = (props: Props) => {
                     Importa file CSV
                 </DialogTitle>
                 <DialogContent>
-                    <Typography>
+                    <Typography style={{marginBottom: '12px'}}>
                         Per elaborare il tuo report fiscale, carica un file CSV formattato con le seguenti colonne:
                         <ol>
                             <li>data della transazione, nel formato dd/mm/YYYY;</li>
@@ -82,6 +114,7 @@ const CsvUploadDialog = (props: Props) => {
                                 </ul>
                             </li>
                         </ol>
+                        I campi devono essere separati dal carattere punto e virgola (;).
                     </Typography>
 
                     <input id='file-input' type='file' accept='.csv' onChange={onFileChange} style={{display: 'none'}} />

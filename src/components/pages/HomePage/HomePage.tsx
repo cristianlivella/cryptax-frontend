@@ -44,6 +44,14 @@ const HomePage = () => {
     }, [reportData]);
 
     const setCapitalLossesCompensation = useCallback((compensate: boolean) => {
+        try {
+            // @ts-ignore
+            ga('send', 'event', {
+                'eventCategory': 'report',
+                'eventAction': 'set_capital_losses_compensation',
+                'eventValue': compensate ? 'true' : 'false'
+            });
+        } finally {}
         setIsCapitalLossesDialogOpen(false);
         fetch('https://core.cryptax.xyz', {
             method: 'POST',
@@ -66,6 +74,13 @@ const HomePage = () => {
     }, [reportData, reportId]);
 
     const setExchangeTypes = useCallback((types: string[]) => {
+        try {
+            // @ts-ignore
+            ga('send', 'event', {
+                'eventCategory': 'report',
+                'eventAction': 'set_exchange_types'
+            });
+        } finally {}
         const typesObject = {};
         reportData.interest_exchanges.forEach((exchange: string, index: number) => {
             // @ts-ignore
