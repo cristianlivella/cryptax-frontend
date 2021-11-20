@@ -101,7 +101,11 @@ const HomePage = () => {
 
             <Content>
                 {viewReport ? (
-                    <ViewReportSection data={reportData} />
+                    <ViewReportSection data={reportData} clearReportData={() => {
+                        setViewReport(false);
+                        setReportData(null);
+                        setReportId('');
+                    }} />
                 ) : (
                     <>
                         <Typography variant='h5' style={{marginBottom: '8px'}}>

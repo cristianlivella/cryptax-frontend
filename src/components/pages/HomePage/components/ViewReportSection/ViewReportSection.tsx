@@ -6,13 +6,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
 
 interface Props {
     data: any;
+    clearReportData: () => void;
 }
 
 const ViewReportSection = (props: Props) => {
-    const { data } = props;
+    const { data, clearReportData } = props;
 
     return (
         <>
@@ -60,6 +62,12 @@ const ViewReportSection = (props: Props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            <Link href='#' onClick={clearReportData}>Torna alla home</Link>
+
+            <Typography variant='body2' style={{fontSize: '0.8em', margin: '16px', color: '#111'}}>
+                Nota bene: il modello F24 non comprende eventuali imposte relative agli interessi dichiarati nel quadro RL.
+            </Typography>
         </>
     );
 };
