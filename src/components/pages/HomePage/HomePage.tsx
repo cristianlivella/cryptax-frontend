@@ -46,10 +46,10 @@ const HomePage = () => {
     const setCapitalLossesCompensation = useCallback((compensate: boolean) => {
         try {
             // @ts-ignore
-            ga('send', 'event', {
-                'eventCategory': 'report',
-                'eventAction': 'set_capital_losses_compensation',
-                'eventValue': compensate ? 'true' : 'false'
+            gtag('event', 'set_capital_losses_compensation', {
+                'event_category': 'report',
+                'event_label': 'set_capital_losses_compensation',
+                'event_value': compensate ? 'true' : 'false'
             });
         } finally {}
         setIsCapitalLossesDialogOpen(false);
@@ -76,9 +76,9 @@ const HomePage = () => {
     const setExchangeTypes = useCallback((types: string[]) => {
         try {
             // @ts-ignore
-            ga('send', 'event', {
+            ga('send', 'set_exchange_types', {
                 'eventCategory': 'report',
-                'eventAction': 'set_exchange_types'
+                'event_label': 'set_exchange_types'
             });
         } finally {}
         const typesObject = {};

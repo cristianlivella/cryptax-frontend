@@ -52,9 +52,9 @@ const CsvUploadDialog = (props: Props) => {
             if (json.exception) {
                 try {
                     // @ts-ignore
-                    ga('send', 'event', {
-                        'eventCategory': 'report',
-                        'eventAction': 'upload_file_fail'
+                    gtag('event', 'upload_file_fail', {
+                        'event_category': 'report',
+                        'event_label': 'upload_file_fail'
                     });
                 } finally {
                     setException(json);
@@ -62,9 +62,9 @@ const CsvUploadDialog = (props: Props) => {
             } else if (json.report_id) {
                 try {
                     // @ts-ignore
-                    ga('send', 'event', {
-                        'eventCategory': 'report',
-                        'eventAction': 'upload_file'
+                    gtag('event', 'upload_file', {
+                        'event_category': 'report',
+                        'event_label': 'upload_file'
                     });
                 } finally {
                     onSuccess(json);
@@ -72,9 +72,9 @@ const CsvUploadDialog = (props: Props) => {
             } else {
                 try {
                     // @ts-ignore
-                    ga('send', 'event', {
-                        'eventCategory': 'report',
-                        'eventAction': 'upload_file_network_fail'
+                    gtag('event', 'upload_file_network_fail', {
+                        'event_category': 'report',
+                        'event_label': 'upload_file_network_fail'
                     });
                 } finally {
                     setException({exception: 'generic_error'});
