@@ -76,8 +76,8 @@ const HomePage = () => {
     const setExchangeTypes = useCallback((types: string[]) => {
         try {
             // @ts-ignore
-            ga('send', 'set_exchange_types', {
-                'eventCategory': 'report',
+            gtag('event', 'set_exchange_types', {
+                'event_category': 'report',
                 'event_label': 'set_exchange_types'
             });
         } finally {}
