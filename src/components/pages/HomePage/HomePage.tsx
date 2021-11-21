@@ -36,7 +36,7 @@ const HomePage = () => {
         if (computedCapitalLossesYears.length > 0) {
             setCapitalLossesYears(computedCapitalLossesYears);
             setIsCapitalLossesDialogOpen(true);
-        } if (reportData.interest_exchanges.length > 0) {
+        } else if (reportData.interest_exchanges.length > 0) {
             setIsExchangeInterestTypeDialogOpen(true);
         } else {
             setViewReport(true);
