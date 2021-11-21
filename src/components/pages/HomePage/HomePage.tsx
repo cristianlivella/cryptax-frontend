@@ -36,12 +36,12 @@ const HomePage = () => {
         if (computedCapitalLossesYears.length > 0) {
             setCapitalLossesYears(computedCapitalLossesYears);
             setIsCapitalLossesDialogOpen(true);
-        } else if (reportData.interest_exchanges.length > 0) {
+        } else if (data.interest_exchanges.length > 0) {
             setIsExchangeInterestTypeDialogOpen(true);
         } else {
             setViewReport(true);
         }
-    }, [reportData]);
+    }, []);
 
     const setCapitalLossesCompensation = useCallback((compensate: boolean) => {
         try {

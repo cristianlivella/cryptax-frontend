@@ -25,7 +25,7 @@ const CsvUploadDialog = (props: Props) => {
     const [exception, setException] = useState<any>(null);
 
     useEffect(() => {
-        if (!open) {
+        if (open) {
             setIsLoading(false);
             setFile(null);
             setException(null);
