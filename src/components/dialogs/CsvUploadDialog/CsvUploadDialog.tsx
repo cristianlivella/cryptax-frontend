@@ -119,7 +119,7 @@ const CsvUploadDialog = (props: Props) => {
                         </small>
                     </Typography>
 
-                    <input id='file-input' type='file' accept='.csv' onChange={onFileChange} style={{display: 'none'}} />
+                    <input id='file-input' type='file' accept='.csv,.xls,.xlsx,.ods' onChange={onFileChange} style={{display: 'none'}} />
 
                     <label htmlFor='file-input'>
                         <Button color='primary' variant='outlined' component='span' >
