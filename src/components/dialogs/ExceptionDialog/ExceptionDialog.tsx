@@ -41,7 +41,7 @@ const ExceptionDialog = (props: Props) => {
             return (
                 <>
                     La transazione numero {data.transaction_id} non è valida. <br/>
-                    "{data.value}" non è un valore valido per il campo "{data.field}".
+                    "{data.value}" non è un valore valido per il campo "{data.attribute}".
                 </>
             );
         } else if (exception === 'InvalidYearException') {
