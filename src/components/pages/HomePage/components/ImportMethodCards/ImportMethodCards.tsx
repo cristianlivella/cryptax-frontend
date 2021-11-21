@@ -13,12 +13,12 @@ const ImportMethodCards = (props: Props) => {
         <StyledContainer>
             <ImportMethodCard
                 title='Importa da file CSV'
-                description='Carica un file CSV contenente le transazioni, nel formato previsto da CrypTax.'
+                description='Carica il file CSV contenente le transazioni, nel formato previsto da CrypTax.'
                 onClick={openCsvDialog}
             />
             <ImportMethodCard
                 title='Importa da exchange'
-                description='Carica il CSV esportato direttamente dal tuo exchange.'
+                description='Carica il file CSV esportato direttamente dal tuo exchange.'
             />
             <ImportMethodCard
                 title='Inserimento manuale'

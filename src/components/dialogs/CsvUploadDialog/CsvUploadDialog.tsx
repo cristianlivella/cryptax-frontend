@@ -114,7 +114,9 @@ const CsvUploadDialog = (props: Props) => {
                                 </ul>
                             </li>
                         </ol>
-                        I campi devono essere separati dal carattere punto e virgola (;).
+                        <small style={{display: 'inline-block', lineHeight: '1.4'}}>
+                            Puoi creare il file utilizzando Excel, LibreOffice Calc o software simili. Le colonne 6 e 7 sono facoltative. Se non ricordi il prezzo di acquisto/vendita puoi lasciare vuota la colonna 3, il valore verrà calcolato automaticamente utilizzando il prezzo di mercato al giorno della transazione.
+                        </small>
                     </Typography>
 
                     <input id='file-input' type='file' accept='.csv' onChange={onFileChange} style={{display: 'none'}} />
