@@ -64,7 +64,10 @@ const ViewReportSection = (props: Props) => {
                 </Table>
             </TableContainer>
 
-            <Link href='#' onClick={clearReportData}>Torna alla home</Link>
+            <Link href='#' onClick={(e) => {
+                clearReportData();
+                e.preventDefault();
+            }}>Torna alla home</Link>
 
             <Typography variant='body2' style={{fontSize: '0.8em', margin: '16px', color: '#111'}}>
                 Nota bene: il modello F24 non comprende eventuali imposte relative agli interessi dichiarati nel quadro RL.

@@ -106,7 +106,7 @@ const CsvUploadDialog = (props: Props) => {
                             <li>ticker criptovaluta (es. BTC, ETH, ecc...);</li>
                             <li>nome dell'exchange/servizio utilizzato;</li>
                             <li>
-                            categoria entrata: lasciare il campo vuoto per le normali transazioni di acquisto/vendita, oppure una delle seguenti:
+                            categoria entrata: lascia il campo vuoto per le normali transazioni di acquisto/vendita, oppure una delle seguenti:
                                 <ul>
                                     <li>airdrop</li>
                                     <li>interessi</li>
