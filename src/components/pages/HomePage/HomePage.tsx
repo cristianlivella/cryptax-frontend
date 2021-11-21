@@ -144,7 +144,7 @@ const HomePage = () => {
                         Unisciti al gruppo telegram
                     </Link>
                     <Typography variant='body2' style={{fontSize: '0.8em', margin: '16px', color: '#111'}}>
-                        ATTENZIONE: CrypTax e Cristian Livella non si assumono nessuna responsabilita riguardo la correttezza e la completezza dei report elaborati. Il software offre un aiuto nel calcolo delle plusvalenze e nella compilazione dei modelli, ma è responsabilità del contribuente di verificarne la correttezza e la compatibilità con la propria situazione finanziaria complessiva.
+                        ATTENZIONE: CrypTax e Cristian Livella non si assumono nessuna responsabilità riguardo la correttezza e la completezza dei report elaborati. Il software offre un aiuto nel calcolo delle plusvalenze e nella compilazione dei modelli, ma è responsabilità del contribuente di verificarne la correttezza e la compatibilità con la propria situazione finanziaria complessiva.
                     </Typography>
                 </div>
             </Content>
