@@ -45,7 +45,7 @@ const ExchangeInterestTypeDialog = (props: Props) => {
                         return (
                             <FlexContainer key={index}>
                                 <TextField
-                                    value={exchange}
+                                    value={exchange === '' ? 'senza nome' : exchange}
                                     inputProps={{readOnly: true}}
                                     label=' '
                                     style={{flex: '1'}}
