@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import CapitalLossesDialog from '../../dialogs/CapitalLossesDialog/CapitalLossesDialog';
 import CsvUploadDialog from '../../dialogs/CsvUploadDialog/CsvUploadDialog';
 import ExchangeInterestTypeDialog from '../../dialogs/ExchangeInterestTypeDialog/ExchangeInterestTypeDialog';
+import RwFinalValueDialog from '../../dialogs/RwFinalValueDialog/RwFinalValueDialog';
 import ImportMethodCards from './components/ImportMethodCards/ImportMethodCards';
 import ViewReportSection from './components/ViewReportSection/ViewReportSection';
 import { Content, StyledTypography } from './styled';
@@ -16,6 +17,7 @@ const HomePage = () => {
     const [isCsvDialogOpen, setIsCsvDialogOpen] = useState(false);
     const [isCapitalLossesDialogOpen, setIsCapitalLossesDialogOpen] = useState(false);
     const [isExchangeInterestTypeDialogOpen, setIsExchangeInterestTypeDialogOpen] = useState(false);
+    const [isRwFinalValueDialogOpen, setIsRwFinalValueDialogOpen] = useState(false);
 
     const [viewReport, setViewReport] = useState(false);
 
@@ -51,6 +53,7 @@ const HomePage = () => {
                 'event_label': 'set_capital_losses_compensation',
                 'event_value': compensate ? 'true' : 'false'
             });
+            // tslint:disable-next-line
         } finally {}
         setIsCapitalLossesDialogOpen(false);
         fetch('https://core.cryptax.xyz', {
@@ -68,7 +71,7 @@ const HomePage = () => {
             if (reportData.interest_exchanges.length > 0) {
                 setIsExchangeInterestTypeDialogOpen(true);
             } else {
-                setViewReport(true);
+                setIsRwFinalValueDialogOpen(true);
             }
         });
     }, [reportData, reportId]);
@@ -80,6 +83,7 @@ const HomePage = () => {
                 'event_category': 'report',
                 'event_label': 'set_exchange_types'
             });
+            // tslint:disable-next-line
         } finally {}
         const typesObject = {};
         reportData.interest_exchanges.forEach((exchange: string, index: number) => {
@@ -100,9 +104,37 @@ const HomePage = () => {
                 'Content-Type': 'application/json',
             }
         }).then(() => {
-            setViewReport(true);
+            setIsRwFinalValueDialogOpen(true);
         });
     }, [reportData, reportId]);
+
+    const setRwFinalValueMethod = (method: string) => {
+        try {
+            // @ts-ignore
+            gtag('event', 'set_rw_final_value_method', {
+                'event_category': 'report',
+                'event_label': 'set_rw_final_value_method',
+                'event_value': method
+            });
+            // tslint:disable-next-line
+        } finally {}
+
+        setIsRwFinalValueDialogOpen(false);
+        fetch('https://core.cryptax.xyz', {
+            method: 'POST',
+            body: JSON.stringify({
+                id: reportId,
+                action: 'set_settings',
+                rw_final_value_method: method
+            }),
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(() => {
+            setViewReport(true);
+        });
+    };
 
     return (
         <>
@@ -152,6 +184,7 @@ const HomePage = () => {
             <CsvUploadDialog open={isCsvDialogOpen} onClose={() => setIsCsvDialogOpen(false)} onSuccess={afterCsvUpload} />
             <CapitalLossesDialog open={isCapitalLossesDialogOpen} onClose={setCapitalLossesCompensation} years={capitalLossesYears} save={reportData?.total_compensation} />
             <ExchangeInterestTypeDialog open={isExchangeInterestTypeDialogOpen} onClose={setExchangeTypes} exchanges={reportData?.interest_exchanges} />
+            <RwFinalValueDialog open={isRwFinalValueDialogOpen} onClose={setRwFinalValueMethod} />
         </>
     );
 };
