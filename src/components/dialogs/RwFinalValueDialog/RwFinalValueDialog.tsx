@@ -18,7 +18,7 @@ interface Props {
 const RwFinalValueDialog = (props: Props) => {
     const { open, onClose } = props;
 
-    const [method, setMethod] = useState<'average_value' | 'real_value' | 'real_value_more_incomes'>('average_value');
+    const [method, setMethod] = useState<'average_value' | 'real_value' | 'real_value_more_incomes'>('real_value_more_incomes');
 
     const handleChange = useCallback((event, selectedMethod) => {
         setMethod(selectedMethod);
