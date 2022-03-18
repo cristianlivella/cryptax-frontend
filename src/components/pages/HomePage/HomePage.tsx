@@ -41,7 +41,7 @@ const HomePage = () => {
         } else if (data.interest_exchanges.length > 0) {
             setIsExchangeInterestTypeDialogOpen(true);
         } else {
-            setViewReport(true);
+            setIsRwFinalValueDialogOpen(true);
         }
     }, []);
 

@@ -35,7 +35,7 @@ const RwFinalValueDialog = (props: Props) => {
                         Scegli quale metodo vuoi utilizzare per il calcolo del valore finale del quadro RW (colonna 8).
                     </p>
 
-                    <RadioGroup aria-label='gender' name='gender1' value={method} onChange={handleChange}>
+                    <RadioGroup value={method} onChange={handleChange}>
                         <RadioItem
                             value='real_value_more_incomes'
                             primaryText={'Controvalore al 31/12 + vendite eseguite durante l\'anno'}
