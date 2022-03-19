@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import styled from 'styled-components';
 
-import RadioItem from './RadioItem/RadioItem';
+import RadioItem from '../../common/RadioItem/RadioItem';
 
 interface Props {
     open: boolean;
