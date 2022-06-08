@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import AppBar from '@material-ui/core/AppBar';
 import Link from '@material-ui/core/Link';
@@ -27,6 +27,20 @@ const HomePage = () => {
 
     const [reportId, setReportId] = useState('');
     const [reportData, setReportData] = useState<any>();
+
+    const updateReportData = useCallback(() => {
+        fetch('https://core.cryptax.xyz/?action=get_info&id=' + reportId, {
+            credentials: 'include'
+        }).then(res => res.json()).then(json => {
+            setReportData(json);
+        });
+    }, [reportId]);
+
+    useEffect(() => {
+        if (viewReport) {
+            updateReportData();
+        }
+    }, [updateReportData, viewReport]);
 
     const afterCsvUpload = useCallback((data) => {
         setReportId(data.report_id);
