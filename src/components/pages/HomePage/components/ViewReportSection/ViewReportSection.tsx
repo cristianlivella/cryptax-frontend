@@ -49,13 +49,13 @@ const ViewReportSection = (props: Props) => {
                                     <TableCell>
                                         {data.years[year].modello_redditi_available ? (
                                             <Link href={'https://core.cryptax.xyz/?id=' + data.report_id + '&action=pdf_modello_redditi&year=' + year} target='_blank'>visualizza</Link>
-                                        ) : (year < 2016 ? 'non disponibile' : 'disponibile da febbraio ' + (year + 1))}
+                                        ) : (year < 2016 ? 'non disponibile' : 'disponibile da ' + (year > 2022 ? 'giugno' : 'febbraio') + ' ' + (year + 1))}
                                     </TableCell>
                                     <TableCell>
                                     {data.years[year].modello_redditi_available ? (data.years[year].should_fill_f24 ? (
                                         <Link href={'https://core.cryptax.xyz/?id=' + data.report_id + '&action=pdf_modello_f24&year=' + year} target='_blank'>visualizza</Link>
                                     ) : 'non necessario'
-                                    ) : (year < 2016 ? 'non disponibile' : 'disponibile da febbraio ' + (year + 1))}
+                                    ) : (year < 2016 ? 'non disponibile' : 'disponibile da ' + (year > 2022 ? 'giugno' : 'febbraio') + ' ' + (year + 1))}
                                     </TableCell>
                                 </TableRow>
                             );
